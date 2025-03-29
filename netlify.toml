@@ -1,7 +1,6 @@
 [build]
-  # The Netlify UI will detect package.json and configure the build automatically
-  # Or you can use our simplified build script
-  command = "npm run build || node build.js"
+  # Simple static deployment
+  command = "node simple-deploy.js"
   publish = "dist"
 
 [build.environment]
@@ -12,16 +11,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-  
-[build.processing]
-  skip_processing = false
-[build.processing.css]
-  bundle = true
-  minify = true
-[build.processing.js]
-  bundle = true
-  minify = true
-[build.processing.html]
-  pretty_urls = true
-[build.processing.images]
-  compress = true
