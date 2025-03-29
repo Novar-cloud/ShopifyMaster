@@ -10,12 +10,12 @@ const NavItem = ({ href, children }: { href: string; children: React.ReactNode }
   
   return (
     <Link href={href}>
-      <a className={cn(
-        "text-gray-800 hover:text-[#008060] transition-colors",
+      <span className={cn(
+        "text-gray-800 hover:text-[#008060] transition-colors cursor-pointer",
         isActive && "text-[#008060]"
       )}>
         {children}
-      </a>
+      </span>
     </Link>
   );
 };
@@ -32,9 +32,9 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <Link href="/">
-            <a className="text-2xl font-bold text-[#4A154B] flex items-center">
+            <span className="text-2xl font-bold text-[#4A154B] flex items-center cursor-pointer">
               <span className="text-[#008060] text-sm font-medium px-3 py-1.5 bg-[#008060]/10 rounded">Shopify Expert</span>
-            </a>
+            </span>
           </Link>
           
           {/* Desktop Navigation */}
