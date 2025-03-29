@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { Mail, Smartphone, Linkedin } from "lucide-react";
+import { Mail, Smartphone } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -197,7 +197,7 @@ export default function ContactSection() {
           </motion.div>
           
           <motion.div 
-            className="mt-12 grid md:grid-cols-3 gap-6"
+            className="mt-12 grid md:grid-cols-2 gap-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -207,8 +207,8 @@ export default function ContactSection() {
                 <Mail className="w-6 h-6 text-[#4A154B]" />
               </div>
               <h3 className="font-bold mb-2">Email</h3>
-              <a href="mailto:contact@nehal.dev" className="text-[#008060] hover:text-[#4A154B] transition-colors">
-                contact@nehal.dev
+              <a href="mailto:sellorablogs@gmail.com" className="text-[#008060] hover:text-[#4A154B] transition-colors">
+                sellorablogs@gmail.com
               </a>
             </div>
             
@@ -217,18 +217,8 @@ export default function ContactSection() {
                 <Smartphone className="w-6 h-6 text-[#008060]" />
               </div>
               <h3 className="font-bold mb-2">Phone</h3>
-              <a href="tel:+11234567890" className="text-[#008060] hover:text-[#4A154B] transition-colors">
-                +1 (123) 456-7890
-              </a>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center">
-              <div className="w-12 h-12 bg-[#FFC96B]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Linkedin className="w-6 h-6 text-[#FFC96B]" />
-              </div>
-              <h3 className="font-bold mb-2">LinkedIn</h3>
-              <a href="#" className="text-[#008060] hover:text-[#4A154B] transition-colors">
-                linkedin.com/in/nehal
+              <a href="tel:+917001875324" className="text-[#008060] hover:text-[#4A154B] transition-colors">
+                +91 7001875324
               </a>
             </div>
           </motion.div>

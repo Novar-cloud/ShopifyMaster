@@ -1,8 +1,18 @@
-import type { Express, Request, Response } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { fromZodError } from "zod-validation-error";
+import nodemailer from "nodemailer";
+
+// Create a transporter for sending emails
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "sellorablogs@gmail.com", // Using the provided email
+    pass: process.env.EMAIL_PASSWORD // Password should be set as an environment variable
+  }
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // put application routes here
@@ -16,6 +26,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Store the contact submission
       const contact = await storage.createContact(validatedData);
+      
+      // Try to send email notification
+      try {
+        const mailOptions = {
+          from: '"Shopify Expert Website" <sellorablogs@gmail.com>',
+          to: "sellorablogs@gmail.com",
+          subject: `New Contact Form: ${validatedData.subject}`,
+          html: `
+            <h1>New Contact Form Submission</h1>
+            <p><strong>Name:</strong> ${validatedData.name}</p>
+            <p><strong>Email:</strong> ${validatedData.email}</p>
+            <p><strong>Subject:</strong> ${validatedData.subject}</p>
+            <p><strong>Message:</strong></p>
+            <p>${validatedData.message.replace(/\n/g, '<br>')}</p>
+          `
+        };
+        
+        if (process.env.EMAIL_PASSWORD) {
+          await transporter.sendMail(mailOptions);
+          console.log('Email notification sent');
+        } else {
+          console.log('Email notification skipped - no email password configured');
+        }
+      } catch (emailError) {
+        console.error('Failed to send email notification:', emailError);
+        // Continue with the response even if email fails
+      }
       
       // Return success response
       return res.status(201).json({

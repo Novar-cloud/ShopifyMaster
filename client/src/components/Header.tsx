@@ -33,17 +33,14 @@ export default function Header() {
         <div className="flex justify-between items-center py-4">
           <Link href="/">
             <a className="text-2xl font-bold text-[#4A154B] flex items-center">
-              <span className="mr-2">Nehal</span>
-              <span className="text-[#008060] text-sm font-medium px-2 py-1 bg-[#008060]/10 rounded">Shopify Expert</span>
+              <span className="text-[#008060] text-sm font-medium px-3 py-1.5 bg-[#008060]/10 rounded">Shopify Expert</span>
             </a>
           </Link>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             <NavItem href="#services">Services</NavItem>
-            <NavItem href="#portfolio">Portfolio</NavItem>
             <NavItem href="#about">About</NavItem>
-            <NavItem href="#testimonials">Testimonials</NavItem>
             <NavItem href="#contact">Contact</NavItem>
           </nav>
           
@@ -64,9 +61,7 @@ export default function Header() {
         <div className="md:hidden bg-white px-4 py-4 shadow-md">
           <nav className="flex flex-col space-y-4">
             <NavItem href="#services">Services</NavItem>
-            <NavItem href="#portfolio">Portfolio</NavItem>
             <NavItem href="#about">About</NavItem>
-            <NavItem href="#testimonials">Testimonials</NavItem>
             <NavItem href="#contact">Contact</NavItem>
           </nav>
         </div>
