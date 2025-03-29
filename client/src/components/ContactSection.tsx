@@ -3,9 +3,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
 import { Mail, Smartphone } from "lucide-react";
-import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
 import {
@@ -32,6 +30,7 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 export default function ContactSection() {
   const { toast } = useToast();
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -43,30 +42,43 @@ export default function ContactSection() {
     },
   });
 
-  const mutation = useMutation({
-    mutationFn: (data: ContactFormValues) => {
-      return apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Message Sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
-        variant: "default",
-      });
-      form.reset();
-      setFormSubmitted(true);
-    },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message || "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
   function onSubmit(data: ContactFormValues) {
-    mutation.mutate(data);
+    setIsSubmitting(true);
+    
+    // Create a new FormData object for Netlify
+    const formData = new FormData();
+    
+    // Add form field data
+    formData.append('form-name', 'contact');
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    
+    // Submit to Netlify forms
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData as any).toString()
+    })
+      .then(() => {
+        toast({
+          title: "Message Sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
+          variant: "default",
+        });
+        form.reset();
+        setFormSubmitted(true);
+        setIsSubmitting(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+      });
   }
 
   return (
@@ -109,7 +121,16 @@ export default function ContactSection() {
               </div>
             ) : (
               <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <form 
+                  name="contact" 
+                  method="POST" 
+                  data-netlify="true" 
+                  onSubmit={form.handleSubmit(onSubmit)} 
+                  className="space-y-6"
+                >
+                  {/* Netlify form hidden input */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  
                   <div className="grid md:grid-cols-2 gap-6">
                     <FormField
                       control={form.control}
@@ -187,9 +208,9 @@ export default function ContactSection() {
                   <Button 
                     type="submit" 
                     className="w-full md:w-auto px-6 py-3 bg-[#008060] text-white font-medium rounded-md hover:bg-[#008060]/90 transition-colors"
-                    disabled={mutation.isPending}
+                    disabled={isSubmitting}
                   >
-                    {mutation.isPending ? "Sending..." : "Send Message"}
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </Form>
