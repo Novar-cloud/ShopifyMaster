@@ -7,6 +7,7 @@ import AboutSection from "@/components/AboutSection";
 import IdealClientsSection from "@/components/IdealClientsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import FuturisticButton from "@/components/FuturisticButton";
 
 export default function Home() {
   const [location, setLocation] = useLocation();
@@ -52,6 +53,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
+      <FuturisticButton />
     </div>
   );
 }
