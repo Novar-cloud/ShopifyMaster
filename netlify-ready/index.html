@@ -53,6 +53,22 @@
     .button:hover {
       background-color: #006c52;
     }
+
+    .button-outline {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    
+    .button-outline:hover {
+      background-color: rgba(0, 128, 96, 0.05);
+    }
     
     /* Header */
     header {
@@ -62,7 +78,7 @@
       width: 100%;
       top: 0;
       z-index: 100;
-      padding: 20px 0;
+      padding: 15px 0;
     }
     
     header .container {
@@ -101,27 +117,43 @@
     
     /* Hero Section */
     #hero {
-      background: linear-gradient(to right, var(--light), #fff);
+      background: linear-gradient(to br, rgba(74, 21, 75, 0.05), rgba(0, 128, 96, 0.05));
       min-height: 80vh;
       display: flex;
       align-items: center;
       padding: 120px 0 60px;
-      text-align: center;
+    }
+    
+    #hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
     }
     
     #hero h1 {
       font-size: 3rem;
       margin-bottom: 20px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      line-height: 1.2;
+    }
+    
+    #hero h1 .primary-text {
+      color: var(--primary);
+    }
+    
+    #hero h1 .secondary-text {
+      color: var(--secondary);
     }
     
     #hero p {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       margin-bottom: 30px;
       color: #555;
+    }
+    
+    #hero .hero-buttons {
+      display: flex;
+      gap: 16px;
     }
     
     /* Sections */
@@ -132,10 +164,21 @@
     section h2 {
       text-align: center;
       font-size: 2.5rem;
-      margin-bottom: 40px;
+      margin-bottom: 16px;
+    }
+
+    section .section-description {
+      text-align: center;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto 40px auto;
     }
     
     /* Services */
+    #services {
+      background-color: white;
+    }
+    
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -148,6 +191,7 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       padding: 30px;
       transition: 0.3s ease;
+      border: 1px solid #f0f0f0;
     }
     
     .service-card:hover {
@@ -155,12 +199,70 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     
-    .service-card h3 {
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .icon-primary {
+      background-color: rgba(0, 128, 96, 0.1);
       color: var(--primary);
+    }
+    
+    .icon-secondary {
+      background-color: rgba(74, 21, 75, 0.1);
+      color: var(--secondary);
+    }
+    
+    .icon-yellow {
+      background-color: rgba(255, 201, 107, 0.1);
+      color: #FFC96B;
+    }
+    
+    .icon-green {
+      background-color: rgba(22, 163, 74, 0.1);
+      color: #16a34a;
+    }
+    
+    .service-card h3 {
+      font-size: 1.5rem;
       margin-bottom: 15px;
     }
     
+    .service-card p {
+      color: #555;
+      margin-bottom: 15px;
+    }
+    
+    .service-card ul {
+      list-style: none;
+    }
+    
+    .service-card ul li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    
+    .bullet {
+      margin-right: 8px;
+    }
+    
     /* Contact Form */
+    #contact {
+      background-color: var(--light);
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
     form {
       background-color: white;
       padding: 40px;
@@ -207,9 +309,27 @@
       text-align: center;
     }
     
+    .contact-info-card {
+      background-color: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px auto;
+    }
+
     .contact-info h3 {
       margin-bottom: 10px;
       color: var(--dark);
+      font-weight: 600;
     }
     
     /* About Section */
@@ -234,6 +354,10 @@
     }
     
     /* Ideal Clients Section */
+    #clients {
+      background-color: white;
+    }
+    
     .clients-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -246,6 +370,13 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
       padding: 30px;
       text-align: center;
+      border: 1px solid #f0f0f0;
+      transition: 0.3s ease;
+    }
+    
+    .client-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     
     .client-icon {
@@ -264,6 +395,15 @@
     
     /* Responsive */
     @media (max-width: 768px) {
+      #hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      
+      #hero .hero-buttons {
+        justify-content: center;
+      }
+      
       .form-row {
         grid-template-columns: 1fr;
       }
@@ -277,11 +417,15 @@
       }
       
       #hero p {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
       }
       
       nav ul {
         display: none;
+      }
+      
+      .section-description {
+        padding: 0 20px;
       }
     }
   </style>
@@ -304,53 +448,75 @@
   <main>
     <section id="hero">
       <div class="container">
-        <h1>Custom Shopify Development</h1>
-        <p>Expert solutions for your e-commerce business</p>
-        <a href="#contact" class="button">Get in Touch</a>
+        <div class="hero-content">
+          <h1>Turning <span class="secondary-text">Designs</span> into <span class="primary-text">High-Converting</span> Shopify Stores</h1>
+          <p>With 2+ years of specialized experience, I develop custom Shopify solutions that blend stunning design with optimal performance.</p>
+          <div class="hero-buttons">
+            <a href="#contact" class="button">Get in Touch</a>
+            <a href="#services" class="button-outline">View Services</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <!-- Hero image intentionally left empty for this simplified version -->
+        </div>
       </div>
     </section>
     
     <section id="services">
       <div class="container">
-        <h2>Services</h2>
+        <h2>Shopify Development Services</h2>
+        <p class="section-description">Comprehensive solutions to create, customize, and optimize your Shopify store for maximum performance and conversions.</p>
+        
         <div class="services-grid">
           <div class="service-card">
-            <h3>Custom Shopify Stores</h3>
-            <p>Tailor-made online stores that perfectly match your brand identity and business requirements, built from the ground up to provide your customers with a unique shopping experience.</p>
+            <div class="service-icon icon-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            </div>
+            <h3>Custom Shopify Development</h3>
+            <p>Complete store setup, customization, and optimization focused on brand identity and conversions.</p>
             <ul>
-              <li>Full-featured store setup</li>
-              <li>Custom checkout process</li>
-              <li>Payment gateway integration</li>
+              <li><span class="bullet" style="color: #008060;">•</span> Store setup & configuration</li>
+              <li><span class="bullet" style="color: #008060;">•</span> Custom theme development</li>
+              <li><span class="bullet" style="color: #008060;">•</span> Payment gateway integration</li>
             </ul>
           </div>
           
           <div class="service-card">
+            <div class="service-icon icon-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
             <h3>Theme Customization</h3>
-            <p>Modifications to existing Shopify themes to enhance functionality and appearance, transforming standard templates into unique storefronts that stand out from the competition.</p>
+            <p>Tailoring Shopify themes to perfectly match your brand identity while maintaining optimal performance.</p>
             <ul>
-              <li>Visual design updates</li>
-              <li>Functionality extensions</li>
-              <li>Custom section development</li>
+              <li><span class="bullet" style="color: #4A154B;">•</span> Liquid, HTML, CSS & JavaScript</li>
+              <li><span class="bullet" style="color: #4A154B;">•</span> Custom sections & blocks</li>
+              <li><span class="bullet" style="color: #4A154B;">•</span> Speed optimization</li>
             </ul>
           </div>
           
           <div class="service-card">
+            <div class="service-icon icon-yellow">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5L4 16"/><path d="M4 5h16v16H4z"/></svg>
+            </div>
             <h3>Figma to Shopify</h3>
-            <p>Convert your Figma designs into fully functional Shopify stores with pixel-perfect accuracy, ensuring your vision is translated exactly as you intended.</p>
+            <p>Transforming your Figma designs into pixel-perfect Shopify stores that maintain your design vision.</p>
             <ul>
-              <li>Pixel-perfect implementation</li>
-              <li>Responsive adaptation</li>
-              <li>Interactive elements</li>
+              <li><span class="bullet" style="color: #FFC96B;">•</span> Pixel-perfect implementation</li>
+              <li><span class="bullet" style="color: #FFC96B;">•</span> Responsive adaptations</li>
+              <li><span class="bullet" style="color: #FFC96B;">•</span> Animation & interaction</li>
             </ul>
           </div>
           
           <div class="service-card">
+            <div class="service-icon icon-green">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
             <h3>SEO Optimization</h3>
-            <p>Enhance your store's visibility in search engines with technical SEO optimizations specifically designed for Shopify's platform.</p>
+            <p>Implementing best SEO practices to improve visibility and organic traffic to your Shopify store.</p>
             <ul>
-              <li>Technical SEO audit</li>
-              <li>Structured data implementation</li>
-              <li>Speed optimization</li>
+              <li><span class="bullet" style="color: #16a34a;">•</span> Schema markup implementation</li>
+              <li><span class="bullet" style="color: #16a34a;">•</span> Metadata optimization</li>
+              <li><span class="bullet" style="color: #16a34a;">•</span> Content structure enhancement</li>
             </ul>
           </div>
         </div>
@@ -360,8 +526,7 @@
     <section id="about">
       <div class="container">
         <h2>About Me</h2>
-        <p>With over 2 years of specialized experience in Shopify development, I help businesses create exceptional online shopping experiences that drive sales and customer satisfaction.</p>
-        <p>My technical expertise includes:</p>
+        <p class="section-description">With over 2 years of specialized experience in Shopify development, I help businesses create exceptional online shopping experiences that drive sales and customer satisfaction.</p>
         
         <div class="skills-list">
           <span class="skill-tag">Shopify Liquid</span>
@@ -379,6 +544,8 @@
     <section id="clients">
       <div class="container">
         <h2>Ideal Clients</h2>
+        <p class="section-description">I specialize in helping these types of businesses achieve e-commerce success with custom Shopify solutions.</p>
+        
         <div class="clients-grid">
           <div class="client-card">
             <div class="client-icon">🚀</div>
@@ -404,43 +571,52 @@
     <section id="contact">
       <div class="container">
         <h2>Get in Touch</h2>
-        <p>Ready to elevate your Shopify store? Let's discuss your project.</p>
+        <p class="section-description">Ready to elevate your Shopify store? Let's discuss how I can help you achieve your e-commerce goals.</p>
         
-        <form name="contact" method="POST" data-netlify="true">
-          <input type="hidden" name="form-name" value="contact">
-          
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Your Name</label>
-              <input type="text" id="name" name="name" required>
+        <div class="contact-container">
+          <form name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact">
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+              </div>
             </div>
+            
             <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" required>
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" required>
             </div>
-          </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="button">Send Message</button>
+          </form>
           
-          <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" id="subject" name="subject" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          
-          <button type="submit" class="button">Send Message</button>
-        </form>
-        
-        <div class="contact-info">
-          <div>
-            <h3>Email</h3>
-            <a href="mailto:sellorablogs@gmail.com">sellorablogs@gmail.com</a>
-          </div>
-          <div>
-            <h3>Phone</h3>
-            <a href="tel:+917001875324">+91 7001875324</a>
+          <div class="contact-info">
+            <div class="contact-info-card">
+              <div class="contact-icon" style="background-color: rgba(74, 21, 75, 0.1);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4A154B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              </div>
+              <h3>Email</h3>
+              <a href="mailto:sellorablogs@gmail.com" style="color: #008060;">sellorablogs@gmail.com</a>
+            </div>
+            
+            <div class="contact-info-card">
+              <div class="contact-icon" style="background-color: rgba(0, 128, 96, 0.1);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#008060" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+              </div>
+              <h3>Phone</h3>
+              <a href="tel:+917001875324" style="color: #008060;">+91 7001875324</a>
+            </div>
           </div>
         </div>
       </div>
